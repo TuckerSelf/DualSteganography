@@ -8,7 +8,33 @@
  */
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
+#include "Steganography.h"
 
 using namespace std;
+
+int Steganography::getNthBit(char cipherChar, int n){
+}
+
+void Steganography::readImage(string fileName){
+}
+
+void Steganography::printImage(string fileName){
+}
+
+void Steganography::readCipherText(string fileName){
+}
+
+void Steganography::printCipherText(string fileName){
+}
+
+void Steganography::cleanImage(){
+}
+
+void Steganography::encipher(){
+}
+
+void Steganography::decipher(){
+}
