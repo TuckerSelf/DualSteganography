@@ -24,14 +24,16 @@ class Steganography{
 
   int getNthBit(char cipherChar, int n);
 
+  int convertBinDeci(std::vector<int>::iterator &iter);
+
  public:
-  void readImage(string fileName);
+  void readImage(std::string fileName);
 
-  void printImage(string fileName);
+  void printImage(std::string fileName);
 
-  void readCipherText(string fileName);
+  void readCipherText(std::string fileName);
 
-  void printCipherText(string fileName);
+  void printCipherText(std::string fileName);
 
   void cleanImage();
 

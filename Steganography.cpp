@@ -55,9 +55,9 @@ void Steganography::readImage(string fileName){
   inFile >> width >> height;
   inFile >> maxColor;
 
-  Infile >> colNum;
+  inFile >> colNum;
   for(int i=0; inFile; i++){
-    colorData.push_back();
+    colorData.push_back(colNum);
     inFile >> colNum;
   }
   
@@ -118,7 +118,7 @@ void Steganography::encipher(){
   
   for(int i=0; i<cipherText.length(); i++){
     for(int j=8; j>0; j--){
-      binData.push_back(getNthBit(cipherText.at(i), (j-1)))
+      binData.push_back(getNthBit(cipherText.at(i), (j-1)));
     }
   }
 
