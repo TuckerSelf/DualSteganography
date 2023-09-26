@@ -16,7 +16,7 @@ using namespace std;
 
 int main() {
   Steganography notmySteganography;
-  char userChoice = '-';
+  char userChoice;
   int check = 0;
   string ppmName, inputText, encodedImg, outputText;
 
