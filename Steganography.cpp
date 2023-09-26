@@ -17,6 +17,7 @@ using namespace std;
 
 int Steganography::getNthBit(char cipherChar, int n){
   int zerOne = (cipherChar>>n)%2;
+  //finds the nth bit
   return zerOne;
 }
 
@@ -28,7 +29,8 @@ int Steganography::convertBinDeci(vector<int>::iterator &iter){
     baseBin[i] = *iter;
     iter++;
   }
-
+  //assigns each baseBin memory slot with a piece of the binary value
+  
   for(int i=0; i<8; i++){
     if(baseBin[i]==1){
       baseBin[i] = baseBin[i]*128;
@@ -37,11 +39,13 @@ int Steganography::convertBinDeci(vector<int>::iterator &iter){
       }
     }
   }
-
+  //converts the binary stored into separate decimal value
+  
   for(int i=0; i<8; i++){
     decaNum += baseBin[i];
   }
-
+  //adds individual decimal values into one value
+  
   return decaNum;
 }
 
@@ -54,12 +58,14 @@ void Steganography::readImage(string fileName){
   inFile >> magicNumber;
   inFile >> width >> height;
   inFile >> maxColor;
+  //stores ppm file data of ppm format, image width and height, and max color depth
 
   inFile >> colNum;
   for(int i=0; inFile; i++){
     colorData.push_back(colNum);
     inFile >> colNum;
   }
+  //reads color data from the file and stores it in colorData
   
   inFile.close();
 }
@@ -74,6 +80,7 @@ void Steganography::printImage(string fileName){
   for(iter=colorData.begin(); iter!=colorData.end(); iter++){
     outFile << *iter << " ";
   }
+  //writing stored colorData into file fileName
   
   outFile.close();
 }
@@ -90,6 +97,7 @@ void Steganography::readCipherText(string fileName){
     getline(inFile, imageData);
     cipherText += imageData;
   }
+  //combines the lines from the image into cipherText
   
   inFile.close();
 }
@@ -100,7 +108,8 @@ void Steganography::printCipherText(string fileName){
   outFile.open(fileName);
 
   outFile << cipherText;
-
+  //prints cipherText into given fileName
+  
   outFile.close();
 }
 
@@ -111,6 +120,7 @@ void Steganography::cleanImage(){
     if(*iter%2!=0)
       *iter-=1;
   }
+  //makes all the color values even by decreasing odd values by one
 }
 
 void Steganography::encipher(){
@@ -121,12 +131,15 @@ void Steganography::encipher(){
       binData.push_back(getNthBit(cipherText.at(i), (j-1)));
     }
   }
+  //fills the binData vector with binary
 
   cleanImage();
+  //primes image for encoding
 
   for(int i=0; i<cipherText.length()*8; i++){
     colorData[i] += binData[i];
   }
+  //adds the binData binary values to color values to encode data
 }
 
 void Steganography::decipher(){
@@ -142,12 +155,15 @@ void Steganography::decipher(){
       binData.push_back(1);
     }
   }
+  //fills binData vector with zeros or ones respectively to represent data
 
   for(iter=binData.begin(); iter!=binData.end(); iter++){
     decaData.push_back(convertBinDeci(iter));
   }
+  //fills decaData vector with decimal values attained from binData and convertBinDeci
 
   for(iter=decaData.begin(); iter!=decaData.end(); iter++){
     cipherText += *iter;
   }
+  //changes the decimal values into string data and stores it in cipherText
 }
