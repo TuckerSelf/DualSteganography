@@ -21,7 +21,7 @@ int main() {
   string ppmName, inputText, encodedImg, outputText;
 
 
-  
+  //loop to get correct user input
   while(check != 2){
 
     cout << "Please choose your operation.\nE for encoding, D for decoding: ";
@@ -37,6 +37,7 @@ int main() {
       cout << "\n";
       cin >> encodedImg;
 
+      //calls all functions needed to encode the image
       notmySteganography.readImage(ppmName);
       notmySteganography.readCipherText(inputText);
 
@@ -52,7 +53,8 @@ int main() {
 
       cout << "\n";
       cin >> outputText;
-      
+
+      //calls all functions needed to decode
       notmySteganography.readImage(ppmName);
       notmySteganography.decipher();
       notmySteganography.printCipherText(outputText);
